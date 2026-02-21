@@ -128,6 +128,9 @@ class _MortgageCalculatorScreenState
                     onTap: () =>
                         setState(() => _isDepositPercent = !_isDepositPercent),
                     child: Container(
+                      margin: const EdgeInsets.only(
+                        top: 25,
+                      ),
                       padding: const EdgeInsets.symmetric(
                         horizontal: 14,
                         vertical: 12,
@@ -135,16 +138,15 @@ class _MortgageCalculatorScreenState
                       decoration: BoxDecoration(
                         color: _isDepositPercent
                             ? AppColors.secondary
-                            : AppColors.background,
+                            : AppColors.primary,
                         borderRadius: BorderRadius.circular(12),
                         border: Border.all(color: AppColors.border),
                       ),
                       child: Text(
                         _isDepositPercent ? '%' : '£',
                         style: AppTextStyles.labelLarge.copyWith(
-                          color: _isDepositPercent
-                              ? Colors.white
-                              : AppColors.textPrimary,
+                          // color: _isDepositPercent? Colors.white: AppColors.textPrimary,
+                          color: Colors.white,
                         ),
                       ),
                     ),
@@ -605,8 +607,7 @@ class _AmortisationChart extends StatelessWidget {
             child: BarChart(
               BarChartData(
                 alignment: BarChartAlignment.spaceAround,
-                maxY:
-                    data
+                maxY: data
                         .map((e) => e.interest + e.principal)
                         .reduce((a, b) => a > b ? a : b) *
                     1.1,
@@ -782,9 +783,8 @@ class _AffordabilityCard extends StatelessWidget {
                   state.isAffordable
                       ? Icons.check_circle_outline_rounded
                       : Icons.warning_amber_rounded,
-                  color: state.isAffordable
-                      ? AppColors.success
-                      : AppColors.error,
+                  color:
+                      state.isAffordable ? AppColors.success : AppColors.error,
                   size: 28,
                 ),
                 const SizedBox(width: 12),
@@ -897,9 +897,8 @@ class _StampDutyCard extends StatelessWidget {
                       title: Text(
                         entry.value,
                         style: AppTextStyles.bodyMedium.copyWith(
-                          fontWeight: isSelected
-                              ? FontWeight.w600
-                              : FontWeight.w400,
+                          fontWeight:
+                              isSelected ? FontWeight.w600 : FontWeight.w400,
                         ),
                       ),
                     );

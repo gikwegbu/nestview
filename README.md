@@ -78,6 +78,8 @@ Open `android/app/src/main/AndroidManifest.xml` and add inside the `<application
     android:value="YOUR_GOOGLE_MAPS_API_KEY" />
 ```
 
+NB: Please, for security purpose, do not check in your API Keys to version control, instead add it to the local.properties, load it in the build.gradle, and then call it up in the AndroidManifest.xml Don't say I didn't do anything for you 🥲
+
 #### iOS
 Open `ios/Runner/AppDelegate.swift` and update:
 

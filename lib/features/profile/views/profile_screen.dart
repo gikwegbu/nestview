@@ -139,8 +139,7 @@ class ProfileScreen extends ConsumerWidget {
             children: [
               _PreferenceRow(
                 label: 'Budget Range',
-                value:
-                    '${CurrencyFormatter.formatCompact(prefs.minBudget)} – '
+                value: '${CurrencyFormatter.formatCompact(prefs.minBudget)} – '
                     '${CurrencyFormatter.formatCompact(prefs.maxBudget)}',
               ),
               _PreferenceRow(
@@ -236,7 +235,7 @@ class ProfileScreen extends ConsumerWidget {
     final controller = TextEditingController(text: current);
     showDialog(
       context: context,
-      builder: (_) => AlertDialog(
+      builder: (dialogContext) => AlertDialog(
         title: const Text('Your Name'),
         content: TextField(
           controller: controller,
@@ -244,13 +243,14 @@ class ProfileScreen extends ConsumerWidget {
         ),
         actions: [
           TextButton(
-            onPressed: () => Navigator.pop(context),
+            onPressed: () => Navigator.pop(dialogContext),
             child: const Text('Cancel'),
           ),
           FilledButton(
             onPressed: () {
               ref.read(profileProvider.notifier).updateName(controller.text);
-              Navigator.pop(context);
+              Navigator.pop(
+                  dialogContext); // Keep dialog open for quick edits, or remove to close after saving
             },
             child: const Text('Save'),
           ),

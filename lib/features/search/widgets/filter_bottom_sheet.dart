@@ -17,10 +17,18 @@ class FilterBottomSheet extends ConsumerStatefulWidget {
 class _FilterBottomSheetState extends ConsumerState<FilterBottomSheet> {
   late SearchFilterModel _localFilter;
 
+  static const double _minPrice = 0;
+  static const double _maxPrice = 5000000;
+
   @override
   void initState() {
     super.initState();
-    _localFilter = ref.read(searchFiltersProvider);
+    final filter = ref.read(searchFiltersProvider);
+    // Clamp on load to prevent out-of-bounds slider values
+    _localFilter = filter.copyWith(
+      minPrice: filter.minPrice.clamp(_minPrice, _maxPrice),
+      maxPrice: filter.maxPrice.clamp(_minPrice, _maxPrice),
+    );
   }
 
   static const _bedroomOptions = ['Studio', '1', '2', '3', '4', '5+'];
@@ -77,6 +85,8 @@ class _FilterBottomSheetState extends ConsumerState<FilterBottomSheet> {
                               _localFilter = SearchFilterModel(
                                 id: 'current',
                                 listingType: _localFilter.listingType,
+                                minPrice: _minPrice,
+                                maxPrice: _maxPrice,
                               );
                             });
                           },
@@ -115,7 +125,7 @@ class _FilterBottomSheetState extends ConsumerState<FilterBottomSheet> {
                                 style: AppTextStyles.labelLarge,
                               ),
                               Text(
-                                _localFilter.maxPrice >= 10000000
+                                _localFilter.maxPrice >= _maxPrice
                                     ? 'No max'
                                     : CurrencyFormatter.formatCompact(
                                         _localFilter.maxPrice,
@@ -126,11 +136,11 @@ class _FilterBottomSheetState extends ConsumerState<FilterBottomSheet> {
                           ),
                           RangeSlider(
                             values: RangeValues(
-                              _localFilter.minPrice,
-                              _localFilter.maxPrice,
+                              _localFilter.minPrice.clamp(_minPrice, _maxPrice),
+                              _localFilter.maxPrice.clamp(_minPrice, _maxPrice),
                             ),
-                            min: 0,
-                            max: 5000000,
+                            min: _minPrice,
+                            max: _maxPrice,
                             divisions: 100,
                             labels: RangeLabels(
                               CurrencyFormatter.formatCompact(
@@ -322,7 +332,8 @@ class _FilterBottomSheetState extends ConsumerState<FilterBottomSheet> {
                           ),
                           Slider(
                             value: (_localFilter.maxCommuteMins ?? 0)
-                                .toDouble(),
+                                .toDouble()
+                                .clamp(0, 120),
                             min: 0,
                             max: 120,
                             divisions: 12,
