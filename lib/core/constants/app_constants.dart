@@ -4,9 +4,9 @@ class AppConstants {
   AppConstants._();
 
   // App Info
-  static const String appName = 'NestView';
+  static const String appName = 'NestHaven';
   static const String appTagline = 'UK Property Search';
-  static const String bundleId = 'com.gikwegbu.nest_view';
+  static const String bundleId = 'com.gikwegbu.nest_haven';
 
   // Hive Box Names
   static const String favouritesBox = 'favouritesBox';
@@ -27,7 +27,7 @@ class AppConstants {
   static const int transportModeTypeId = 7;
 
   // Mock API Base URL
-  static const String baseUrl = 'https://api.nestview.co.uk/v1';
+  static const String baseUrl = 'https://api.NestHaven.co.uk/v1';
 
   // Pagination
   static const int defaultPageSize = 20;

@@ -8,7 +8,7 @@
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {
-  testWidgets('NestView app smoke test', (WidgetTester tester) async {
+  testWidgets('NestHaven app smoke test', (WidgetTester tester) async {
     // Basic test - full integration tests require Hive initialization
     expect(true, isTrue);
   });

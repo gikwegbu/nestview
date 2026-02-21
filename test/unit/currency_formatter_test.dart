@@ -1,6 +1,6 @@
 // test/unit/currency_formatter_test.dart
 import 'package:flutter_test/flutter_test.dart';
-import 'package:nest_view/core/utils/currency_formatter.dart';
+import 'package:nest_haven/core/utils/currency_formatter.dart';
 
 void main() {
   group('CurrencyFormatter', () {

@@ -2,10 +2,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:nest_view/features/search/models/property_model.dart';
-import 'package:nest_view/features/search/models/property_preview_model.dart';
-import 'package:nest_view/features/search/widgets/property_card.dart';
-import 'package:nest_view/features/favourites/viewmodels/favourites_viewmodel.dart';
+import 'package:nest_haven/features/search/models/property_model.dart';
+import 'package:nest_haven/features/search/models/property_preview_model.dart';
+import 'package:nest_haven/features/search/widgets/property_card.dart';
+import 'package:nest_haven/features/favourites/viewmodels/favourites_viewmodel.dart';
 
 // A lightweight property for UI testing
 PropertyModel _testProperty({double? previousPrice}) => PropertyModel(
@@ -62,21 +62,21 @@ void main() {
   group('PropertyCard widget', () {
     testWidgets('renders property price', (tester) async {
       await tester.pumpWidget(_buildCard(_testProperty()));
-      await tester.pump();
+      await tester.pump(const Duration(seconds: 1));
       // Price should appear somewhere in the widget tree
       expect(find.textContaining('450'), findsAtLeastNWidgets(1));
     });
 
     testWidgets('renders bedroom and bathroom count', (tester) async {
       await tester.pumpWidget(_buildCard(_testProperty()));
-      await tester.pump();
+      await tester.pump(const Duration(seconds: 1));
       expect(find.textContaining('3'), findsAtLeastNWidgets(1));
       expect(find.textContaining('2'), findsAtLeastNWidgets(1));
     });
 
     testWidgets('renders address', (tester) async {
       await tester.pumpWidget(_buildCard(_testProperty()));
-      await tester.pump();
+      await tester.pump(const Duration(seconds: 1));
       expect(find.textContaining('Oak Avenue'), findsAtLeastNWidgets(1));
     });
 
@@ -84,7 +84,7 @@ void main() {
       final property =
           _testProperty(previousPrice: 500000); // was £500k, now £450k
       await tester.pumpWidget(_buildCard(property));
-      await tester.pump();
+      await tester.pump(const Duration(seconds: 1));
       // Should show some indicator of price reduction
       expect(find.byWidgetPredicate((w) {
         if (w is Text) {
@@ -97,7 +97,7 @@ void main() {
 
     testWidgets('favourite button is present', (tester) async {
       await tester.pumpWidget(_buildCard(_testProperty()));
-      await tester.pump();
+      await tester.pump(const Duration(seconds: 1));
       // Look for a heart icon button
       expect(
         find.byWidgetPredicate(

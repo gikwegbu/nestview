@@ -214,7 +214,7 @@ class ProfileScreen extends ConsumerWidget {
             title: 'About',
             icon: Icons.info_outline_rounded,
             children: [
-              _InfoRow(label: 'App', value: 'NestView v1.0.0'),
+              _InfoRow(label: 'App', value: 'NestHaven v1.0.0'),
               _InfoRow(label: 'Region', value: 'United Kingdom'),
               _InfoRow(
                 label: 'Data',

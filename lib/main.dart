@@ -51,11 +51,11 @@ void main() async {
     _openBox<bool>(AppConstants.onboardingBox),
   ]);
 
-  runApp(const ProviderScope(child: NestViewApp()));
+  runApp(const ProviderScope(child: NestHavenApp()));
 }
 
-class NestViewApp extends ConsumerWidget {
-  const NestViewApp({super.key});
+class NestHavenApp extends ConsumerWidget {
+  const NestHavenApp({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {

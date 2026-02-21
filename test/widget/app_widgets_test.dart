@@ -4,8 +4,8 @@
 //
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:nest_view/core/widgets/app_loading.dart';
-import 'package:nest_view/core/widgets/app_error.dart';
+import 'package:nest_haven/core/widgets/app_loading.dart';
+import 'package:nest_haven/core/widgets/app_error.dart';
 
 Widget _wrap(Widget child) => MaterialApp(home: Scaffold(body: child));
 

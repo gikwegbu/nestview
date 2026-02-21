@@ -1,6 +1,6 @@
 // test/unit/property_model_test.dart
 import 'package:flutter_test/flutter_test.dart';
-import 'package:nest_view/features/search/models/property_model.dart';
+import 'package:nest_haven/features/search/models/property_model.dart';
 
 PropertyModel _makeProperty({
   double price = 450000,

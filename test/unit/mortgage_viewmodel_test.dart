@@ -1,6 +1,6 @@
 // test/unit/mortgage_viewmodel_test.dart
 import 'package:flutter_test/flutter_test.dart';
-import 'package:nest_view/features/mortgage_calculator/viewmodels/mortgage_calculator_viewmodel.dart';
+import 'package:nest_haven/features/mortgage_calculator/viewmodels/mortgage_calculator_viewmodel.dart';
 
 void main() {
   // Helper to create a MortgageState directly

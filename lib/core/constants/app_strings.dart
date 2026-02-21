@@ -4,7 +4,7 @@ class AppStrings {
   AppStrings._();
 
   // App
-  static const String appName = 'NestView';
+  static const String appName = 'NestHaven';
   static const String appTagline = 'UK PROPERTY';
 
   // Onboarding

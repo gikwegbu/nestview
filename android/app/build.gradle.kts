@@ -15,7 +15,7 @@ if (localPropertiesFile.exists()) {
 
 
 android {
-    namespace = "com.gikwegbu.nest_view"
+    namespace = "com.gikwegbu.nest_haven"
     compileSdk = flutter.compileSdkVersion
     ndkVersion = flutter.ndkVersion
 
@@ -30,7 +30,7 @@ android {
 
     defaultConfig {
         // TODO: Specify your own unique Application ID (https://developer.android.com/studio/build/application-id.html).
-        applicationId = "com.gikwegbu.nest_view"
+        applicationId = "com.gikwegbu.nest_haven"
         // You can update the following values to match your application needs.
         // For more information, see: https://flutter.dev/to/review-gradle-config.
         minSdk = flutter.minSdkVersion
