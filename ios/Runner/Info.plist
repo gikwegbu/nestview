@@ -28,6 +28,12 @@
 	<string>LaunchScreen</string>
 	<key>UIMainStoryboardFile</key>
 	<string>Main</string>
+	<key>MAPS_API_KEY</key>
+	<string>$(MAPS_API_KEY)</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+    <string>NestView uses your location to show nearby properties and calculate commute times.</string>
+    <key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+    <string>NestView uses your location to show nearby properties and calculate commute times.</string>
 	<key>UISupportedInterfaceOrientations</key>
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>

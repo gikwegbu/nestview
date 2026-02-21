@@ -80,6 +80,46 @@ Open `android/app/src/main/AndroidManifest.xml` and add inside the `<application
 
 NB: Please, for security purpose, do not check in your API Keys to version control, instead add it to the local.properties, load it in the build.gradle, and then call it up in the AndroidManifest.xml Don't say I didn't do anything for you 🥲
 
+##### Step 1 — Add the key to `local.properties`
+
+Open `android/local.properties` (this file is already gitignored by default). Add your key at the bottom:
+
+```properties
+MAPS_API_KEY=your_actual_api_key_here
+```
+
+##### Step 2 — Load the key in `android/app/build.gradle.kts`
+
+At the **top** of the file, before the `android {}` block, add:
+
+```kotlin
+import java.util.Properties
+
+val localProperties = Properties()
+val localPropertiesFile = rootProject.file("local.properties")
+if (localPropertiesFile.exists()) {
+    localPropertiesFile.inputStream().use { localProperties.load(it) }
+}
+```
+Then inside `android { defaultConfig { ... } }`, add:
+
+```kotlin
+android {
+    defaultConfig {
+        // ... your existing config
+        manifestPlaceholders["MAPS_API_KEY"] = localProperties.getProperty("MAPS_API_KEY") ?: ""
+    }
+}
+```
+
+##### Step 3 — Reference the key in `AndroidManifest.xml`
+```xml
+<meta-data
+    android:name="com.google.android.geo.API_KEY"
+    android:value="${MAPS_API_KEY}" />
+```
+---
+
 #### iOS
 Open `ios/Runner/AppDelegate.swift` and update:
 
@@ -99,10 +139,84 @@ import GoogleMaps
 }
 ```
 
+NB: Secure the API keys in iOS too:
+##### Step 1 — Create `ios/Flutter/secrets.xcconfig`
+
+Create a **new file** at `ios/Flutter/secrets.xcconfig` and add:
+
+```
+MAPS_API_KEY=your_actual_api_key_here
+```
+
+##### Step 2 — Add `secrets.xcconfig` to `.gitignore`
+
+In your root `.gitignore`, add:
+
+```gitignore
+# iOS secrets (contains API keys — never commit)
+ios/Flutter/secrets.xcconfig
+```
+##### Step 3 — Import secrets into Xcode config files
+
+Open `ios/Flutter/Debug.xcconfig` and add at the top:
+
+```
+#include "secrets.xcconfig"
+#include "Generated.xcconfig"
+```
+
+
+Open `ios/Flutter/Release.xcconfig` and do the same:
+
+```
+#include "secrets.xcconfig"
+#include "Generated.xcconfig"
+```
+
+> ⚠️ The `#include "secrets.xcconfig"` line **must come before** `Generated.xcconfig`.
+
+
+##### Step 4 — Expose the key via `Info.plist`
+
+Open `ios/Runner/Info.plist` and add inside the root `<dict>`:
+
+```xml
+MAPS_API_KEY
+$(MAPS_API_KEY)
+```
+
+##### Step 5 — Read the key in `AppDelegate.swift`
+
+Open `ios/Runner/AppDelegate.swift` and update it to:
+
+```swift
+import Flutter
+import UIKit
+import GoogleMaps
+
+@main
+@objc class AppDelegate: FlutterAppDelegate {
+  override func application(
+    _ application: UIApplication,
+    didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?
+  ) -> Bool {
+    let key = Bundle.main.object(forInfoDictionaryKey: "MAPS_API_KEY") as? String ?? ""
+    GMSServices.provideAPIKey(key)
+    GeneratedPluginRegistrant.register(with: self)
+    return super.application(application, didFinishLaunchingWithOptions: launchOptions)
+  }
+}
+```
+
+--- 
+
 Also add to `ios/Runner/Info.plist`:
 
 ```xml
 <key>NSLocationWhenInUseUsageDescription</key>
+<string>NestView uses your location to show nearby properties and calculate commute times.</string>
+
+<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
 <string>NestView uses your location to show nearby properties and calculate commute times.</string>
 ```
 

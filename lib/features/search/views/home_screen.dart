@@ -225,7 +225,7 @@ class _FeaturedSection extends ConsumerWidget {
           error: (e, _) => AppErrorWidget(message: e.toString()),
           data: (properties) => CarouselSlider(
             options: CarouselOptions(
-              height: 300,
+              height: 400,
               viewportFraction: 0.88,
               enableInfiniteScroll: true,
               autoPlay: true,
