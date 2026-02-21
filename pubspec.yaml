@@ -1,0 +1,94 @@
+name: nest_view
+description: "NestView — UK Property Search & Mortgage Calculator App"
+publish_to: 'none'
+
+version: 1.0.0+1
+
+environment:
+  sdk: '>=3.2.0 <4.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  # State Management
+  flutter_riverpod: ^2.4.9
+  riverpod_annotation: ^2.3.3
+  hooks_riverpod: ^2.4.9
+  flutter_hooks: ^0.20.3
+
+  # Local Storage
+  hive: ^2.2.3
+  hive_flutter: ^1.1.0
+
+  # Navigation
+  go_router: ^12.1.1
+
+  # Network
+  dio: ^5.3.3
+
+  # Maps & Location
+  google_maps_flutter: ^2.5.0
+  geolocator: ^10.1.0
+  geocoding: ^2.1.1
+
+  # UI & Animations
+  flutter_animate: ^4.3.0
+  cached_network_image: ^3.3.0
+  shimmer: ^3.0.0
+  fl_chart: ^0.65.0
+  photo_view: ^0.14.0
+  carousel_slider_plus: ^6.0.0
+  flutter_svg: ^2.0.9
+  flutter_rating_bar: ^4.0.1
+
+  # Utilities
+  intl: ^0.18.1
+  share_plus: ^7.2.1
+  url_launcher: ^6.2.1
+  google_fonts: ^6.1.0
+  equatable: ^2.0.5
+  path_provider: ^2.1.1
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+  flutter_lints: ^3.0.0
+  hive_generator: ^2.0.1
+  build_runner: ^2.4.6
+  json_serializable: ^6.7.1
+  freezed: ^2.4.5
+  riverpod_generator: ^2.3.3
+  custom_lint: ^0.5.7
+  riverpod_lint: ^2.3.3
+  mocktail: ^1.0.1
+  flutter_launcher_icons: ^0.13.1
+  flutter_native_splash: ^2.3.7
+
+flutter:
+  uses-material-design: true
+
+  assets:
+    - assets/images/
+    - assets/icons/
+    - assets/animations/
+    - assets/fonts/
+
+
+flutter_launcher_icons:
+  android: true
+  ios: true
+  image_path: "assets/icons/app_icon.png"
+  min_sdk_android: 21
+  web:
+    generate: false
+
+flutter_native_splash:
+  color: "#1A1A2E"
+  image: assets/icons/splash_logo.png
+  color_dark: "#1A1A2E"
+  image_dark: assets/icons/splash_logo.png
+  android: true
+  ios: true
+  fullscreen: true
